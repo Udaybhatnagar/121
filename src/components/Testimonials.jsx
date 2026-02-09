@@ -6,89 +6,90 @@ const Testimonials = () => {
   const [index, setIndex] = useState(0);
 
   const reviews = [
-    {
-      name: "Rahul Sharma",
-      role: "CEO, TechFlow India",
-      content:
-        "121Developer transformed our legacy systems into a blazing-fast React infrastructure with rock-solid security.",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
-      stars: 5
-    },
-    {
-      name: "Anita Desai",
-      role: "Marketing Director, Global Retail",
-      content:
-        "Their digital strategy helped us grow organic conversions by 150% in just four months.",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop",
-      stars: 5
-    },
-    {
-      name: "Vikram Malhotra",
-      role: "Founder, SecureFin",
-      content:
-        "Clear roadmap, smart decisions, and serious cost savings. Highly recommended.",
-      avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop",
-      stars: 5
-    }
-  ];
+  {
+    name: "Rahul Sharma",
+    role: "CEO, TechFlow India",
+    content: "TechHub Technology transformed our legacy systems into a blazing-fast React infrastructure with rock-solid security.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
+    stars: 5
+  },
+  {
+    name: "Anita Desai",
+    role: "Marketing Director, Global Retail",
+    content: "Their digital strategy helped us grow organic conversions by 150% in just four months. Truly exceptional work by TechHub Technology.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop",
+    stars: 5
+  },
+  {
+    name: "Vikram Malhotra",
+    role: "Founder, SecureFin",
+    content: "Clear roadmap, smart decisions, and serious cost savings. The team at TechHub Technology are true partners.",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop",
+    stars: 5
+  }
+];
+
 
   const next = () => setIndex((i) => (i + 1) % reviews.length);
   const prev = () => setIndex((i) => (i - 1 + reviews.length) % reviews.length);
 
   return (
-    <section className="py-20 px-6 bg-[#0a0c10] relative overflow-hidden">
-      {/* Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.08),transparent_60%)]" />
+    <section className="py-32 px-6 bg-[#f8fafc] relative overflow-hidden">
+      {/* Soft Ambient Background Elements */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-100/40 blur-[100px] rounded-full" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-100/30 blur-[100px] rounded-full" />
 
-      <div className="max-w-3xl mx-auto text-center relative">
-        {/* Badge */}
+      <div className="max-w-4xl mx-auto text-center relative">
+        {/* Premium Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-cyan-400 text-xs font-semibold uppercase mb-8"
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-slate-200 shadow-sm text-cyan-600 text-[10px] font-black uppercase tracking-[0.3em] mb-12"
         >
-          <Quote size={14} />
-          Testimonials
+          <Quote size={12} className="fill-cyan-600" />
+          Client Voices
         </motion.div>
 
-        {/* Slider */}
+        {/* Testimonial Container */}
         <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-              className="p-8 md:p-10 rounded-3xl bg-white/[0.04] border border-white/10 backdrop-blur-xl shadow-xl"
+              initial={{ opacity: 0, scale: 0.98, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.98, x: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="p-10 md:p-16 rounded-[3rem] bg-white border border-slate-100 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.06)] relative z-10"
             >
-              {/* Stars */}
-              <div className="flex justify-center gap-1 mb-5">
+              {/* Star Rating */}
+              <div className="flex justify-center gap-1.5 mb-8">
                 {Array.from({ length: reviews[index].stars }).map((_, i) => (
-                  <Star key={i} size={16} className="fill-cyan-400 text-cyan-400" />
+                  <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
 
-              {/* Text */}
-              <p className="text-lg md:text-xl leading-relaxed text-gray-200 mb-6">
+              {/* Testimonial Content */}
+              <h3 className="text-2xl md:text-3xl leading-[1.4] font-bold text-slate-900 mb-10 tracking-tight">
                 “{reviews[index].content}”
-              </p>
+              </h3>
 
-              {/* Author */}
-              <div className="flex items-center justify-center gap-4">
-                <img
-                  src={reviews[index].avatar}
-                  alt={reviews[index].name}
-                  className="w-14 h-14 rounded-xl object-cover border border-cyan-500/30"
-                />
-                <div className="text-left">
-                  <h4 className="text-white font-semibold">
+              {/* Author Profile */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                <div className="relative">
+                  <img
+                    src={reviews[index].avatar}
+                    alt={reviews[index].name}
+                    className="w-16 h-16 rounded-2xl object-cover shadow-md border-2 border-white"
+                  />
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-cyan-500 rounded-lg flex items-center justify-center text-white">
+                    <Quote size={10} fill="currentColor" />
+                  </div>
+                </div>
+                <div className="md:text-left">
+                  <h4 className="text-slate-900 font-black text-lg leading-tight">
                     {reviews[index].name}
                   </h4>
-                  <p className="text-cyan-400 text-xs uppercase tracking-wide">
+                  <p className="text-cyan-600 text-[11px] font-bold uppercase tracking-widest mt-1">
                     {reviews[index].role}
                   </p>
                 </div>
@@ -96,30 +97,34 @@ const Testimonials = () => {
             </motion.div>
           </AnimatePresence>
 
-          {/* Arrows */}
-          <button
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-black transition"
-          >
-            <ChevronLeft className="mx-auto" />
-          </button>
+          {/* Premium Navigation Controls */}
+          <div className="absolute inset-y-0 -left-6 md:-left-12 flex items-center z-20">
+            <button
+              onClick={prev}
+              className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-400 hover:text-cyan-600 hover:border-cyan-200 hover:shadow-lg transition-all flex items-center justify-center"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          </div>
 
-          <button
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-10 h-10 rounded-full bg-white/5 border border-white/10 hover:bg-cyan-500 hover:text-black transition"
-          >
-            <ChevronRight className="mx-auto" />
-          </button>
+          <div className="absolute inset-y-0 -right-6 md:-right-12 flex items-center z-20">
+            <button
+              onClick={next}
+              className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-slate-400 hover:text-cyan-600 hover:border-cyan-200 hover:shadow-lg transition-all flex items-center justify-center"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
+        {/* Progress Dots */}
+        <div className="flex justify-center gap-3 mt-12">
           {reviews.map((_, i) => (
             <button
               key={i}
               onClick={() => setIndex(i)}
-              className={`h-1 rounded-full transition-all ${
-                i === index ? "w-8 bg-cyan-500" : "w-3 bg-white/20"
+              className={`h-1.5 rounded-full transition-all duration-500 ${
+                i === index ? "w-10 bg-slate-900" : "w-2 bg-slate-200"
               }`}
             />
           ))}

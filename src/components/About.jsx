@@ -51,19 +51,20 @@ const About = () => {
           {/* Section Label */}
           <div className="flex items-center gap-3 text-cyan-500 font-black tracking-widest text-xs uppercase mb-6">
             <span className="w-10 h-[2px] bg-cyan-500" />
-            About 121Developer
+            About TechHub Technology
           </div>
 
           <h2 className="text-5xl font-black mb-8 leading-tight">
-            Empowering Your <br />
-            <span className="text-gray-500">Digital Success</span>
+            We are Ready to Help <br />
+            <span className="text-gray-500">And Improve Your Knowledge</span>
           </h2>
 
           <p className="text-gray-400 text-lg leading-relaxed mb-10">
-            At 121Developer, we are committed to providing world-class digital
-            marketing and development solutions that empower your business to
-            thrive in a digital-first world. Our team of experts is here to help
-            you succeed.
+            Welcome to TechHub Technological, where innovation meets quality in
+            the field of technological solutions. We were founded with a passion
+            for generating revolutionary change via cutting-edge technology, and
+            we are committed to helping both organizations and individuals to
+            prosper in the digital age.
           </p>
 
           {/* Feature Grid */}
@@ -73,9 +74,11 @@ const About = () => {
                 <CheckCircle size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-white mb-1">Best Services</h4>
+                <h4 className="font-bold text-white mb-1">
+                  Personalized Experience
+                </h4>
                 <p className="text-gray-500 text-sm">
-                  We become your dedicated growth partner.
+                  Refreshing to get such a personal touch.
                 </p>
               </div>
             </div>
@@ -85,9 +88,12 @@ const About = () => {
                 <Headphones size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-white mb-1">24/7 Support</h4>
+                <h4 className="font-bold text-white mb-1">
+                  Web & Graphic Design Excellence
+                </h4>
                 <p className="text-gray-500 text-sm">
-                  Always available for your digital needs.
+                  Experience excellence in web and graphic design with our
+                  personalized solutions.
                 </p>
               </div>
             </div>
@@ -104,9 +110,11 @@ const About = () => {
             </button>
 
             <div>
-              <div className="font-bold text-white italic">Dibya Pathak</div>
+              <div className="font-bold text-white italic">
+                From Concept to Execution
+              </div>
               <div className="text-xs text-gray-500 uppercase tracking-widest">
-                Co-Founder
+                We Deliver Top-Notch Services
               </div>
             </div>
           </div>

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Globe, Layers, Shield, Cpu, Zap, Database, ArrowUpRight } from 'lucide-react';
 
 const CaseStudiesSlider = () => {
-  // Extended list for a continuous loop with images
   const projects = [
     {
       title: "E-commerce Platform",
@@ -49,33 +48,40 @@ const CaseStudiesSlider = () => {
     },
   ];
 
-  // Double the array for seamless infinite looping
-  const infiniteProjects = [...projects, ...projects, ...projects]; // Triple for smoother, longer loop
+  const infiniteProjects = [...projects, ...projects, ...projects];
 
   return (
-    <section className="py-24 bg-[#0a0c10] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row justify-between items-start md:items-end">
+    <section className="py-32 bg-[#fcfdfe] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-16 flex flex-col md:flex-row justify-between items-start md:items-end">
         <div>
-          <span className="text-cyan-500 font-bold tracking-[0.2em] text-xs uppercase">Portfolio</span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mt-2">Our Case Studies</h2>
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-2 text-cyan-600 font-black tracking-[0.3em] text-[10px] uppercase mb-3"
+          >
+            <span className="w-8 h-[2px] bg-cyan-500"></span>
+            Portfolio
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
+            Our Case <span className="text-slate-400 italic font-medium">Studies</span>
+          </h2>
         </div>
-        <div className="text-gray-500 text-sm font-medium mt-4 md:mt-0">
-          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-            Drag or scroll to explore →
-          </motion.p>
+        <div className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-6 md:mt-0 flex items-center gap-3">
+          <span className="w-12 h-[1px] bg-slate-200"></span>
+          Drag to explore
         </div>
       </div>
 
       {/* Slider Container */}
       <div className="flex relative cursor-grab active:cursor-grabbing">
         <motion.div 
-          className="flex gap-6 px-6"
-          animate={{ x: ["-33.33%", "0%"] }} // Adjust based on number of duplicated sets
+          className="flex gap-8 px-8"
+          animate={{ x: ["0%", "-33.33%"] }} 
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 60, // Slower duration for more cards
+              duration: 40, 
               ease: "linear",
             },
           }}
@@ -84,43 +90,41 @@ const CaseStudiesSlider = () => {
           {infiniteProjects.map((project, index) => (
             <div 
               key={index}
-              className="w-[320px] h-[400px] shrink-0 group relative rounded-[2rem] bg-white/[0.03] border border-white/5 overflow-hidden transition-all hover:border-cyan-500/30"
+              className="w-[350px] h-[450px] shrink-0 group relative rounded-[2.5rem] bg-white border border-slate-100 overflow-hidden transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-2"
             >
-              {/* Background Image */}
+              {/* Background Image with Light Overlay */}
               <img 
                 src={project.image} 
                 alt={project.title} 
-                className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-60 transition-opacity duration-500"
+                className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700"
               />
               
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c10] via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+              {/* Refined Light Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent opacity-90 transition-opacity" />
 
               {/* Content */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-between">
+              <div className="absolute inset-0 p-10 flex flex-col justify-between z-10">
                 <div className="flex justify-between items-start">
-                  <div className={`p-3 rounded-xl bg-white/5 border border-white/10 text-${project.color}-400`}>
+                  <div className={`p-4 rounded-2xl bg-white shadow-sm border border-slate-50 text-${project.color}-500`}>
                     {project.icon}
                   </div>
-                  <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-black transition-all">
-                    <ArrowUpRight size={20} />
+                  <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-500 shadow-xl">
+                    <ArrowUpRight size={22} />
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-[10px] font-bold tracking-widest uppercase text-gray-500 mb-2 block">
+                  <span className="text-[10px] font-black tracking-[0.2em] uppercase text-cyan-600 mb-3 block">
                     {project.cat}
                   </span>
-                  <h3 className="text-2xl font-bold text-white leading-tight">
+                  <h3 className="text-2xl font-black text-slate-900 leading-tight">
                     {project.title}
                   </h3>
                 </div>
               </div>
 
-              {/* Decorative Tech Lines */}
-              <div className="absolute top-0 right-0 p-4">
-                 <div className={`w-16 h-[1px] bg-gradient-to-r from-transparent to-${project.color}-500/30`} />
-              </div>
+              {/* Decorative Accent Line */}
+              <div className={`absolute bottom-0 left-0 h-1.5 bg-${project.color}-500 w-0 group-hover:w-full transition-all duration-700`} />
             </div>
           ))}
         </motion.div>
