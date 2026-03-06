@@ -1,47 +1,54 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Services = () => {
+  const navigate = useNavigate();
+
   const services = [
     {
       title: "Custom Web Solutions",
+      slug: "web-development",
       desc: "High-performance, scalable web ecosystems built with modern frameworks to drive enterprise growth.",
       icon: "🌐",
-      accent: "cyan"
+      accent: "cyan",
     },
     {
       title: "Digital Marketing",
+      slug: "digital-marketing",
       desc: "Data-driven strategies that amplify your brand presence and maximize ROI through precision targeting.",
       icon: "📈",
-      accent: "blue"
+      accent: "blue",
     },
     {
       title: "App Development",
+      slug: "app-development",
       desc: "Intuitive mobile experiences that bridge the gap between complex functionality and user delight.",
       icon: "📱",
-      accent: "indigo"
-    }
+      accent: "indigo",
+    },
   ];
 
   return (
     <section id="services" className="py-32 px-6 bg-[#f8fafc]">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Section Header */}
         <div className="mb-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             className="text-cyan-600 font-black tracking-[0.4em] text-[10px] uppercase mb-4"
           >
             What We Do
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight"
           >
-            Specialized <span className="text-slate-400 italic font-medium">Services</span>
+            Specialized{" "}
+            <span className="text-slate-400 italic font-medium">Services</span>
           </motion.h2>
         </div>
 
@@ -53,11 +60,12 @@ const Services = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileHover={{ 
+              whileHover={{
                 y: -12,
-                transition: { duration: 0.3, ease: "easeOut" }
+                transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className="group relative p-12 rounded-[3rem] bg-white border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-500"
+              onClick={() => navigate(`/services/${service.slug}`)}
+              className="group relative p-12 rounded-[3rem] bg-white border border-slate-100 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-500 cursor-pointer"
             >
               {/* Floating Icon with Accent Glow */}
               <div className="relative w-16 h-16 rounded-2xl bg-slate-50 flex items-center justify-center text-3xl mb-8 group-hover:scale-110 group-hover:bg-cyan-50 transition-all duration-500">
@@ -68,7 +76,7 @@ const Services = () => {
               <h3 className="text-2xl font-black mb-4 text-slate-900 group-hover:text-cyan-600 transition-colors">
                 {service.title}
               </h3>
-              
+
               <p className="text-slate-500 leading-relaxed mb-8 font-medium">
                 {service.desc}
               </p>
@@ -84,7 +92,7 @@ const Services = () => {
 
               {/* Decorative Corner Element */}
               <div className="absolute top-0 right-0 p-8">
-                 <div className="w-12 h-12 border-t-2 border-r-2 border-slate-50 rounded-tr-[2rem] group-hover:border-cyan-100 transition-colors" />
+                <div className="w-12 h-12 border-t-2 border-r-2 border-slate-50 rounded-tr-[2rem] group-hover:border-cyan-100 transition-colors" />
               </div>
             </motion.div>
           ))}

@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   Phone,
-  MapPin,
   Clock,
   Facebook,
   Twitter,
@@ -10,6 +9,7 @@ import {
   Linkedin,
   ArrowRight,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import TechhubLogo from "../assets/techhub_logo.png";
 
 /* ---------- Motion Variants ---------- */
@@ -23,24 +23,42 @@ const fadeUp = {
 };
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const services = [
-    "IT Management",
-    "Database Security",
-    "IT Consultancy",
-    "App Development",
-    "Cyber Security",
+    { label: "IT Management", slug: "it-management" },
+    { label: "Database Security", slug: "database-security" },
+    { label: "IT Consultancy", slug: "it-consultancy" },
+    { label: "App Development", slug: "app-development" },
+    { label: "Cyber Security", slug: "cyber-security" },
   ];
 
   const links = [
-    "Home",
-    "About Us",
-    "Services",
-    "Blog",
-    "Contact Us",
-    "Privacy Policy",
+    { label: "Home", to: "/" },
+    { label: "About Us", to: "/about" },
+    { label: "Services", to: "/services" },
+    { label: "Blog", to: "/blogs" },
+    { label: "Contact Us", to: "/contact" },
   ];
 
   const socials = [Facebook, Twitter, Instagram, Linkedin];
+
+  const handleLinkClick = (to) => {
+    if (to.startsWith("/#")) {
+      const sectionId = to.replace("/#", "");
+      if (window.location.pathname === "/") {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate("/");
+        setTimeout(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        }, 400);
+      }
+    } else {
+      navigate(to);
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
     <footer className="relative bg-[#0a0c10] pt-24 pb-12 px-6 border-t border-white/5 overflow-hidden">
@@ -86,11 +104,17 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4 text-sm font-medium">
               {services.map((item) => (
-                <li key={item}>
-                  <a className="group flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors">
+                <li key={item.slug}>
+                  <button
+                    onClick={() => {
+                      navigate(`/services/${item.slug}`);
+                      window.scrollTo(0, 0);
+                    }}
+                    className="group flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors w-full text-left"
+                  >
                     <ArrowRight size={14} className="text-cyan-500" />
-                    {item}
-                  </a>
+                    {item.label}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -103,11 +127,14 @@ const Footer = () => {
             </h4>
             <ul className="space-y-4 text-sm font-medium">
               {links.map((item) => (
-                <li key={item}>
-                  <a className="group flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors">
+                <li key={item.label}>
+                  <button
+                    onClick={() => handleLinkClick(item.to)}
+                    className="group flex items-center gap-2 text-gray-500 hover:text-cyan-400 transition-colors w-full text-left"
+                  >
                     <ArrowRight size={14} className="text-cyan-500" />
-                    {item}
-                  </a>
+                    {item.label}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -120,16 +147,10 @@ const Footer = () => {
             </h4>
 
             <div className="space-y-6 text-sm text-gray-500">
-              {/* <div className="flex gap-4">
-                <IconBox icon={MapPin} color="cyan">
-                  211A/05, Sec-91, Faridabad <br /> Haryana (121013)
-                </IconBox>
-              </div> */}
-
               <div className="flex gap-4">
                 <IconBox icon={Phone} color="blue">
                   <a href="tel:+918527657955" className="hover:text-white">
-                    +91 8527657955
+                    +91 9368465315
                   </a>
                 </IconBox>
               </div>

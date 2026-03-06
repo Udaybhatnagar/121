@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Loader from "./components/Loader";
-import Home from "./pages/Home";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -21,10 +22,12 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-[#0a0c10] min-h-screen text-white">
-      <Loader loading={loading} progress={progress} />
-      {!loading && <Home />}
-    </div>
+    <BrowserRouter>
+      <div className="bg-[#0a0c10] min-h-screen text-white">
+        <Loader loading={loading} progress={progress} />
+        {!loading && <AppRoutes />}
+      </div>
+    </BrowserRouter>
   );
 }
 
